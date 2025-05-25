@@ -1,0 +1,56 @@
+/* Smooth scrolling and typography */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--f1-gray);
+  line-height: 1.6;
+}
+
+/* Apple-like animations */
+button, .btn {
+  transition: all 0.3s var(--f1-speed);
+  transform-origin: center;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+button:active, .btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* F1 Card styling */
+.card {
+  background: var(--f1-white);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s var(--f1-speed), box-shadow 0.3s var(--f1-speed);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* F1 Red accents */
+.accent {
+  color: var(--f1-red);
+}
+
+/* Loading animation */
+@keyframes f1Pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: f1Pulse 1.5s infinite var(--f1-speed);
+}

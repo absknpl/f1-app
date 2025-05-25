@@ -1,49 +1,72 @@
-import React, { useState } from 'react';
-import { currentStandings, getUpcomingRaces } from '../utils/f1Data';
-import { calculatePointsNeeded } from '../utils/calculations';
+import React, { useState, useEffect } from 'react';
+import { get2025Standings, get2025UpcomingRaces } from '../utils/f1Data';
+import { calculatePointsDifference } from '../utils/calculations';
 
 const PointsCalculator = () => {
-  const [selectedDriver1, setSelectedDriver1] = useState(currentStandings[0]?.id || '');
-  const [selectedDriver2, setSelectedDriver2] = useState(currentStandings[1]?.id || '');
+  const [standings, setStandings] = useState([]);
+  const [upcomingRaces, setUpcomingRaces] = useState([]);
+  const [selectedDriver1, setSelectedDriver1] = useState('');
+  const [selectedDriver2, setSelectedDriver2] = useState('');
   const [calculationResult, setCalculationResult] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const upcomingRaces = getUpcomingRaces();
+  useEffect(() => {
+    const loadData = () => {
+      const standingsData = get2025Standings();
+      const racesData = get2025UpcomingRaces();
+      setStandings(standingsData);
+      setUpcomingRaces(racesData);
+      if (standingsData.length > 1) {
+        setSelectedDriver1(standingsData[0].id);
+        setSelectedDriver2(standingsData[1].id);
+      }
+      setLoading(false);
+    };
+
+    loadData();
+  }, []);
 
   const handleCalculate = () => {
     if (!selectedDriver1 || !selectedDriver2) return;
-    
-    const result = calculatePointsNeeded(selectedDriver1, selectedDriver2);
+    const result = calculatePointsDifference(
+      selectedDriver1,
+      selectedDriver2,
+      standings,
+      upcomingRaces
+    );
     setCalculationResult(result);
   };
 
+  if (loading) return <div className="loading">Loading 2025 data...</div>;
+
   return (
     <div className="points-calculator">
-      <h2>Points Difference Calculator</h2>
+      <h2>2025 Championship Points Calculator</h2>
       <div className="calculator-form">
         <div className="driver-selection">
           <div className="form-group">
-            <label>Driver 1 (Leader):</label>
+            <label>Current Leader:</label>
             <select
               value={selectedDriver1}
               onChange={(e) => setSelectedDriver1(e.target.value)}
             >
-              {currentStandings.map((driver, index) => (
+              {standings.map(driver => (
                 <option key={driver.id} value={driver.id}>
-                  {driver.name} ({driver.points} pts)
+                  {driver.name} ({driver.team}) - {driver.points} pts
                 </option>
               ))}
             </select>
           </div>
           
           <div className="form-group">
-            <label>Driver 2 (Chaser):</label>
+            <label>Challenger:</label>
             <select
               value={selectedDriver2}
               onChange={(e) => setSelectedDriver2(e.target.value)}
             >
-              {currentStandings.map((driver) => (
+              {standings.map(driver => (
                 <option key={driver.id} value={driver.id}>
-                  {driver.name} ({driver.points} pts)
+                  {driver.name} ({driver.team}) - {driver.points} pts
                 </option>
               ))}
             </select>
@@ -56,18 +79,18 @@ const PointsCalculator = () => {
 
         {calculationResult && (
           <div className="calculation-result">
-            <h3>Results:</h3>
+            <h3>2025 Championship Outlook:</h3>
             <p>
               <strong>{calculationResult.driver2.name}</strong> needs to gain 
               <strong> {calculationResult.pointsNeeded} points</strong> on 
-              <strong> {calculationResult.driver1.name}</strong> in the remaining 
-              <strong> {upcomingRaces.length} races</strong> to win the championship.
+              <strong> {calculationResult.driver1.name}</strong> over 
+              <strong> {calculationResult.racesLeft} races</strong> to win.
             </p>
             <p>
-              Average points per race needed: <strong>{calculationResult.avgPerRace.toFixed(1)}</strong>
+              Average needed per race: <strong>{calculationResult.avgPerRace.toFixed(1)} points</strong>
             </p>
             <p>
-              Maximum possible points remaining: <strong>{upcomingRaces.length * 26}</strong> (25 for win + 1 for fastest lap)
+              Maximum points available: <strong>{calculationResult.maxPossiblePoints}</strong>
             </p>
           </div>
         )}

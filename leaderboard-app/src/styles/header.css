@@ -1,0 +1,157 @@
+/* F1 Design System */
+:root {
+  --f1-red: #e10600;
+  --f1-black: #15151e;
+  --f1-white: #ffffff;
+  --f1-gray: #f5f5f5;
+  --f1-metal: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+  --f1-speed: cubic-bezier(0.2, 0.8, 0.4, 1);
+}
+
+/* Apple-like Typography */
+body {
+  font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  color: var(--f1-black);
+}
+
+/* Header Styles */
+.app-header {
+  background: var(--f1-metal);
+  color: var(--f1-white);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s var(--f1-speed);
+}
+
+.logo-container:hover {
+  transform: translateX(-5px);
+}
+
+.f1-logo-mark {
+  width: 40px;
+  height: 40px;
+  background: var(--f1-red);
+  mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z'/%3E%3C/svg%3E") no-repeat center;
+  margin-right: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.season-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  gap: 1px;
+}
+
+.main-nav button {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: var(--f1-white);
+  cursor: pointer;
+  font-family: 'Titillium Web';
+  font-weight: 600;
+  padding: 0 1.5rem;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--f1-speed);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-nav button:hover {
+  background: rgba(225, 6, 0, 0.2);
+  color: var(--f1-red);
+}
+
+.main-nav button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--f1-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--f1-speed);
+}
+
+.main-nav button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.nav-text {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 1rem;
+  }
+  
+  .main-title {
+    font-size: 1.1rem;
+  }
+  
+  .main-nav button {
+    padding: 0 1rem;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+}

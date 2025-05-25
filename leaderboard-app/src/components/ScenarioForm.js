@@ -1,104 +1,109 @@
-import React, { useState, useCallback } from 'react';
-import { currentStandings, getUpcomingRaces } from '../utils/f1Data';
-import { calculateScenario } from '../utils/calculations';
+import React, { useState, useEffect, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
+import { get2025Standings, get2025UpcomingRaces, load2025Data } from '../utils/f1Data';
+import { calculate2025Scenario } from '../utils/calculations';
 
 const ScenarioForm = ({ setScenarioResults }) => {
-  const upcomingRaces = getUpcomingRaces();
-  const [selectedRace, setSelectedRace] = useState(upcomingRaces[0]?.name || '');
+  const [originalStandings, setOriginalStandings] = useState([]);
+  const [modifiedStandings, setModifiedStandings] = useState([]);
+  const [upcomingRaces, setUpcomingRaces] = useState([]);
+  const [selectedRace, setSelectedRace] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Auto-fill with current standings
-  const initialResults = currentStandings.slice(0, 20).map((driver, index) => ({
-    id: driver.id,
-    position: index + 1,
-    driver: driver.id
-  }));
+  // Load initial data
+  useEffect(() => {
+    const initializeData = async () => {
+      await load2025Data();
+      const standings = get2025Standings();
+      const races = get2025UpcomingRaces();
+      setOriginalStandings([...standings]);
+      setModifiedStandings([...standings]);
+      setUpcomingRaces(races);
+      setSelectedRace(races[0]?.name || '');
+      setIsLoading(false);
+    };
+    initializeData();
+  }, []);
 
-  const [raceResults, setRaceResults] = useState(initialResults);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const results = calculateScenario(selectedRace, raceResults);
-    setScenarioResults(results);
-  };
-
+  // Reset to original standings
   const handleReset = () => {
-    setRaceResults(initialResults);
+    setModifiedStandings([...originalStandings]);
     setScenarioResults(null);
   };
 
+  // Drag and drop handler
   const onDragEnd = useCallback((result) => {
     if (!result.destination) return;
     
-    const items = Array.from(raceResults);
+    const items = Array.from(modifiedStandings);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-
-    // Update positions based on new order
-    const reorderedResults = items.map((item, index) => ({
+    
+    setModifiedStandings(items.map((item, index) => ({
       ...item,
       position: index + 1
-    }));
+    })));
+  }, [modifiedStandings]);
 
-    setRaceResults(reorderedResults);
-  }, [raceResults]);
+  // Calculate scenario
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const results = calculate2025Scenario(
+      selectedRace,
+      modifiedStandings.map((d, i) => ({ position: i + 1, driver: d.id })),
+      [],
+      originalStandings
+    );
+    setScenarioResults(results);
+  };
+
+  if (isLoading) return <div className="loading">Loading 2025 season data...</div>;
 
   return (
     <div className="scenario-form">
-      <h2>Create Race Scenario</h2>
       <form onSubmit={handleSubmit}>
+        {/* Race selection dropdown */}
         <div className="form-group">
-          <label htmlFor="race-select">Select Race:</label>
-          <select 
-            id="race-select"
+          <label>Select Grand Prix:</label>
+          <select
             value={selectedRace}
             onChange={(e) => setSelectedRace(e.target.value)}
             required
           >
-            <option value="">Select a race</option>
             {upcomingRaces.map(race => (
               <option key={race.id} value={race.name}>
-                {race.name} ({new Date(race.date).toLocaleDateString()})
+                {race.name} ({race.circuit})
               </option>
             ))}
           </select>
         </div>
 
+        {/* Drag and drop interface */}
         <div className="race-results-input">
-          <h3>Drag drivers to set finishing order:</h3>
+          <h3>Set Race Finish Order:</h3>
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="drivers">
               {(provided) => (
-                <div 
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  className="driver-list"
-                >
-                  {raceResults.map((result, index) => {
-                    const driver = currentStandings.find(d => d.id === result.driver);
-                    return (
-                      <Draggable 
-                        key={driver.id}
-                        draggableId={driver.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className="driver-item"
-                          >
-                            <span className="position">{result.position}.</span>
-                            <div className="driver-info">
-                              <span className="driver-name">{driver.name}</span>
-                              <span className="driver-team">{driver.team}</span>
-                            </div>
+                <div {...provided.droppableProps} ref={provided.innerRef} className="driver-list">
+                  {modifiedStandings.map((driver, index) => (
+                    <Draggable key={driver.id} draggableId={driver.id} index={index}>
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="driver-item"
+                        >
+                          <span className="position">{index + 1}.</span>
+                          <div className="driver-info">
+                            <span className="driver-name">{driver.name}</span>
+                            <span className="driver-team">{driver.team}</span>
+                            <span className="driver-points">{driver.points} pts</span>
                           </div>
-                        )}
-                      </Draggable>
-                    );
-                  })}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
                   {provided.placeholder}
                 </div>
               )}
@@ -106,12 +111,17 @@ const ScenarioForm = ({ setScenarioResults }) => {
           </DragDropContext>
         </div>
 
+        {/* Action buttons */}
         <div className="form-actions">
           <button type="submit" className="calculate-btn">
-            Calculate Scenario
+            Calculate Projection
           </button>
-          <button type="button" onClick={handleReset} className="reset-btn">
-            Reset to Current Standings
+          <button 
+            type="button" 
+            onClick={handleReset} 
+            className="reset-btn"
+          >
+            Reset Projection
           </button>
         </div>
       </form>
