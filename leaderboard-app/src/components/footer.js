@@ -14,9 +14,7 @@ const Footer = () => {
           <a href="https://linkedin.com/in/absknpl" target="_blank" rel="noopener noreferrer">
             LinkedIn
           </a>
-          <a href="https://twitter.com/abhishekn123" target="_blank" rel="noopener noreferrer">
-            Twitter
-          </a>
+
         </div>
         <p className="footer-tech">
           Built with React, DnD, and Formula 1 passion. 
