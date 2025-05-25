@@ -145,7 +145,48 @@ body {
     background-color: #f8f8f8;
     border-radius: 4px;
   }
-  
+  .customize-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.customize-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.customize-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.scenario-results {
+  margin-top: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.results-notice {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.positive {
+  color: #00a000;
+}
+
+.negative {
+  color: #e10600;
+}
   /* Responsive */
   @media (max-width: 768px) {
     .leaderboard-table {
