@@ -1,8 +1,24 @@
 export const racesRemaining = [
-    { id: 1, name: "Monaco Grand Prix", date: "2023-05-28" },
-    { id: 2, name: "Azerbaijan Grand Prix", date: "2023-06-04" },
-    // Add all remaining races for the season
-  ];
+  { id: 9, name: "Spanish Grand Prix", date: "2025-05-30", completed: false },
+  { id: 10, name: "Canadian Grand Prix", date: "2025-06-13", completed: false },
+  { id: 11, name: "Austrian Grand Prix", date: "2025-06-27", completed: false },
+  { id: 12, name: "British Grand Prix", date: "2025-07-04", completed: false },
+  { id: 13, name: "Belgian Grand Prix", date: "2025-07-25", completed: false },
+  { id: 14, name: "Hungarian Grand Prix", date: "2025-08-01", completed: false },
+  { id: 15, name: "Dutch Grand Prix", date: "2025-08-29", completed: false },
+  { id: 16, name: "Italian Grand Prix", date: "2025-09-05", completed: false },
+  { id: 17, name: "Azerbaijan Grand Prix", date: "2025-09-19", completed: false },
+  { id: 18, name: "Singapore Grand Prix", date: "2025-10-03", completed: false },
+  { id: 19, name: "United States Grand Prix", date: "2025-10-17", completed: false },
+  { id: 20, name: "Mexico City Grand Prix", date: "2025-10-24", completed: false },
+  { id: 21, name: "São Paulo Grand Prix", date: "2025-11-07", completed: false },
+  { id: 22, name: "Las Vegas Grand Prix", date: "2025-11-20", completed: false },
+  { id: 23, name: "Qatar Grand Prix", date: "2025-11-28", completed: false },
+  { id: 24, name: "Abu Dhabi Grand Prix", date: "2025-12-05", completed: false }
+];
+
+// Helper function to filter upcoming races
+export const getUpcomingRaces = () => racesRemaining.filter(race => !race.completed);
   
   export const currentStandings = [
     {
@@ -208,16 +224,16 @@ export const racesRemaining = [
   ];
   
   
-  export const pointsSystem = {
-    1: 25,
-    2: 18,
-    3: 15,
-    4: 12,
-    5: 10,
-    6: 8,
-    7: 6,
-    8: 4,
-    9: 2,
-    10: 1,
-    fastestLap: 1
-  };
+export const pointsSystem = {
+  1: 25,
+  2: 18,
+  3: 15,
+  4: 12,
+  5: 10,
+  6: 8,
+  7: 6,
+  8: 4,
+  9: 2,
+  10: 1,
+  fastestLap: 1
+};
