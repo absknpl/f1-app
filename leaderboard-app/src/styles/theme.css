@@ -1,0 +1,50 @@
+/* Theme Styles */
+.app-header {
+    background-color: #E10600;
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .main-nav button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .main-nav button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  h1, h2, h3 {
+    color: #E10600;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 1.8em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+  }
+  
+  h3 {
+    font-size: 1.2em;
+  }
