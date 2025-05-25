@@ -5,6 +5,7 @@ import ScenarioForm from './components/ScenarioForm';
 import ScenarioResults from './components/ScenarioResults';
 import PointsCalculator from './components/PointsCalculator';
 import CustomizeLeaderboard from './components/CustomizeLeaderboard';
+import Footer from './components/footer';
 import './styles/main.css';
 import './styles/theme.css';
 
@@ -44,6 +45,8 @@ function App() {
           />
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,3 +1,8 @@
+export const getUpcomingRaces = () => {
+  return racesRemaining.filter(race => !race.completed);
+};
+
+// Make sure racesRemaining is properly defined
 export const racesRemaining = [
   { id: 9, name: "Spanish Grand Prix", date: "2025-05-30", completed: false },
   { id: 10, name: "Canadian Grand Prix", date: "2025-06-13", completed: false },
@@ -17,9 +22,7 @@ export const racesRemaining = [
   { id: 24, name: "Abu Dhabi Grand Prix", date: "2025-12-05", completed: false }
 ];
 
-// Helper function to filter upcoming races
-export const getUpcomingRaces = () => racesRemaining.filter(race => !race.completed);
-  
+
   export const currentStandings = [
     {
       id: "pia",
