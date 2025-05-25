@@ -7,6 +7,19 @@ const Leaderboard = ({ customization }) => {
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
 
+  const teamClassMap = {
+  'Red Bull': 'red-bull',
+  'Mercedes': 'mercedes',
+  'Ferrari': 'ferrari',
+  'McLaren': 'mclaren',
+  'Alpine F1 Team': 'alpine',
+  'Aston Martin': 'aston-martin',
+  'Sauber': 'sauber',
+  'Haas F1 Team': 'haas',
+  'Williams': 'williams',
+  'RB F1 Team': 'rb', 
+};
+
   const loadStandings = async () => {
     try {
       setLoading(true);
@@ -88,9 +101,9 @@ const Leaderboard = ({ customization }) => {
         <tbody>
           {standings.map(driver => (
             <tr 
-              key={driver.id} 
-              className={`driver-row ${driver.team.toLowerCase().replace(/\s+/g, '-')}`}
-            >
+  key={driver.id} 
+  className={`driver-row ${teamClassMap[driver.team] || ''}`}
+>
               <td>{driver.position}</td>
               <td>
                 <span className="driver-number">{driver.number}</span>

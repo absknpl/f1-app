@@ -1,4 +1,6 @@
-/* F1 Design System */
+/* ================================
+  F1 Design System Variables
+================================ */
 :root {
   --f1-red: #e10600;
   --f1-black: #15151e;
@@ -8,25 +10,32 @@
   --f1-speed: cubic-bezier(0.2, 0.8, 0.4, 1);
 }
 
-/* Apple-like Typography */
+/* ================================
+  Typography
+================================ */
 body {
   font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   color: var(--f1-black);
+  margin: 0;
+  padding: 0;
+  background-color: var(--f1-gray);
 }
 
-/* Header Styles */
+/* ================================
+  Header Base Styles
+================================ */
 .app-header {
   background: var(--f1-metal);
   color: var(--f1-white);
-  padding: 0;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0;
 }
 
 .header-content {
@@ -37,8 +46,12 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 80px;
+  flex-wrap: wrap;
 }
 
+/* ================================
+  Logo & Branding
+================================ */
 .logo-container {
   display: flex;
   align-items: center;
@@ -79,10 +92,13 @@ body {
   margin-top: 4px;
 }
 
-/* Navigation */
+/* ================================
+  Navigation
+================================ */
 .main-nav {
   display: flex;
   gap: 1px;
+  flex-wrap: wrap;
 }
 
 .main-nav button {
@@ -137,21 +153,39 @@ body {
   text-transform: uppercase;
 }
 
-/* Responsive */
+/* ================================
+  Responsive Adjustments
+================================ */
 @media (max-width: 768px) {
   .header-content {
+    flex-direction: column;
+    align-items: flex-start;
     padding: 0 1rem;
+    height: auto;
+    gap: 10px;
   }
-  
+
   .main-title {
     font-size: 1.1rem;
   }
-  
-  .main-nav button {
-    padding: 0 1rem;
+
+  .main-nav {
+    width: 100%;
+    justify-content: space-around;
   }
-  
+
+  .main-nav button {
+    flex: 1;
+    padding: 0 1rem;
+    height: 60px;
+  }
+
   .nav-text {
     display: none;
+  }
+
+  .season-subtitle {
+    margin-top: 2px;
+    font-size: 0.6rem;
   }
 }
