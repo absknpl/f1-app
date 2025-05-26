@@ -70,7 +70,7 @@ Whether you're a fan, a strategist, or a developer, this app gives you full cont
 ## 📦 Setup Instructions
 
 ### 1. Clone this repo
-```bash
+
 git clone https://github.com/absknpl/f1-app.git
 cd f1-championship-predictor
 
@@ -115,8 +115,8 @@ View	Description
 
 Abhisek Nepal
 🧑‍💻 Frontend Developer | F1 Fan | Tech Educator
-🌐 ![Portfolio](https://www.abisek.dev)
-📫 ![Linkedin](https://www.linkedin.com/in/absknpl)
+🌐 [Portfolio](https://www.abisek.dev)
+📫 [Linkedin](https://www.linkedin.com/in/absknpl)
 ⚖ License
 
 This project is open source under the MIT License — use it freely, and feel free to contribute!
