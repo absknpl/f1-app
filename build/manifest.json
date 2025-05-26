@@ -1,7 +1,7 @@
 {
-  "short_name": "F1 Simulator",
-  "name": "Formula 1 Championship Simulator",
-  "description": "A web-based simulator for Formula 1 championships, allowing users to run future possibilities.",
+  "short_name": "Championship Simulator",
+  "name": "Interactive F1 Championship Calculator",
+  "description": "A web application to simulate and calculate F1 championship standings interactively.",
   "icons": [
     {
       "src": "favicon.ico",
