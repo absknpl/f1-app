@@ -11,6 +11,8 @@ Whether you're a fan, a strategist, or a developer, this app gives you full cont
 
 ---
 
+![f1-simulator banner](https://github.com/user-attachments/assets/b8ec9619-92e3-4705-a78b-0c0bf5dd96e9)
+
 ## ✨ Features
 
 ### 📊 Championship Leaderboard
@@ -108,13 +110,14 @@ View	Description
     🌍 Internationalization
 
     ⏱ Live lap-by-lap update hooks (WebSocket)
+![f1-simulator poster(1)](https://github.com/user-attachments/assets/cec20dcd-7ce6-42f7-ac1b-4e914a98b3e9)
 
 👤 About the Developer
 
 Abhisek Nepal
 🧑‍💻 Frontend Developer | F1 Fan | Tech Educator
-🌐 My Portfolio
-📫 Email me
+🌐 [My Portfolio](https://www.abisek.dev/f1-simulator)  
+📫 [Linkedin](https://www.linkedin.com/in/absknpl)  
 ⚖ License
 
 This project is open source under the MIT License — use it freely, and feel free to contribute!
