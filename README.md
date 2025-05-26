@@ -65,21 +65,6 @@ Whether you're a fan, a strategist, or a developer, this app gives you full cont
 
 ---
 
-## 📁 File Structure
-
-📦 src/
-├── components/ # Leaderboard, Simulator, Calculator
-├── utils/ # Data handlers: get2025Standings, team mappings
-├── assets/ # Logos, track icons, backgrounds
-├── styles/
-│ ├── header.css # Sticky header and F1-style nav
-│ └── main.css # Responsive layouts, tables, forms
-├── App.js # Root app logic
-└── index.js # Entry point
-
-
----
-
 ## 📦 Setup Instructions
 
 ### 1. Clone this repo
