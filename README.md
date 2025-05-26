@@ -7,7 +7,7 @@ Whether you're a fan, a strategist, or a developer, this app gives you full cont
 
 ## 🔥 Live Demo
 
-▶️ [Click here to try it live](https:www.abisek.dev/f1-simulator)  
+▶️ [Click here to try it live](https://www.abisek.dev/f1-simulator)  
 
 ---
 
