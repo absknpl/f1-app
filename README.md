@@ -10,6 +10,7 @@ Whether you're a fan, a strategist, or a developer, this app gives you full cont
 ▶️ [Click here to try it live](https://www.abisek.dev/f1-simulator)  
 
 ---
+![f1-simulator poster](https://github.com/user-attachments/assets/2dd90518-94df-4c2d-947e-9282aed1dae0)
 
 ![f1-simulator banner](https://github.com/user-attachments/assets/b8ec9619-92e3-4705-a78b-0c0bf5dd96e9)
 
