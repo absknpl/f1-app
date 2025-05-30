@@ -215,11 +215,11 @@ Abhisek Nepal
 ⚖ License
 
 This project is open source under the MIT License — use it freely, and feel free to contribute!
-🏷 Hashtags
+Version 1.0.0
 
 <<<<<<< HEAD
 #Formula1 #F12025 #ReactJS #WebDevelopment #SportsTech
 =======
 #Formula1 #F12025 #ReactJS #WebDevelopment #SportsTech 
->>>>>>> 06ae50ad185234702216f62c559c41195bd1a7c4
+>>>>>>> 
 #FrontendDevelopment #JavaScript #APIIntegration #F1Simulator
