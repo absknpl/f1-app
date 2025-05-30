@@ -215,7 +215,7 @@ Abhisek Nepal
 ⚖ License
 
 This project is open source under the MIT License — use it freely, and feel free to contribute!
-Version 1.0.0
+Version 1.0
 
 <<<<<<< HEAD
 #Formula1 #F12025 #ReactJS #WebDevelopment #SportsTech
